@@ -1,7 +1,10 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
+import { pairHashpack } from './hashconnect';
 import './App.css';
 
 function App() {
+  const [pairingString, setPairingString] = useState('')
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +12,18 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p id='accountid'></p>
+        {
+          pairingString &&
+          <>
+            <h1>Pairing string</h1>
+            <p>{pairingString}</p>
+          </>
+        }
+        <button onClick={async () => {
+          const saveData = await pairHashpack()
+          setPairingString(saveData.pairingString)
+        }}>Pair wallet</button>
       </header>
     </div>
   );
