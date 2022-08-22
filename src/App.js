@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-import { pairHashpack } from './hashconnect';
+import { pairHashpack, authenticateUser } from './hashconnect';
 import './App.css';
 
 function App() {
@@ -20,6 +20,8 @@ function App() {
             <p>{pairingString}</p>
           </>
         }
+        <button onClick={authenticateUser}>Authenticate</button>
+        
         <button onClick={async () => {
           const saveData = await pairHashpack()
           setPairingString(saveData.pairingString)
